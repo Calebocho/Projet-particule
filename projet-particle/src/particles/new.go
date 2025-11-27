@@ -2,7 +2,7 @@ package particles
 
 import (
 	"container/list"
-	"fmt"
+	"math/rand"
 	"project-particles/config"
 	"project-particles/particle"
 )
@@ -13,16 +13,36 @@ import (
 // Dans sa version actuelle, cette fonction affiche une particule blanche au
 // centre de l'écran.
 func NewSystem() System {
-	l := list.New()
-	p1 := particle.NewParticle()
-	l.PushFront(&p1)
-	fmt.Println(p1)
-	fmt.Println(particle.Particle{
-		PositionX: float64(config.General.WindowSizeX) / 2,
-		PositionY: float64(config.General.WindowSizeY) / 2,
-		ScaleX:    1, ScaleY: 1,
-		ColorRed: 0.5, ColorGreen: 1, ColorBlue: 1,
-		Opacity: 1,
-	})
-	return System{Content: l}
+	// On initialise le système d'abord avec une liste vide
+	s := System{Content: list.New()}
+
+	for i := 0; i < config.General.InitNumParticles; i++ {
+		s.CreateParticle()
+	}
+
+	return s
+}
+func (s *System) CreateParticle() {
+	p := particle.NewParticle()
+
+	// 1. Position
+	if config.General.RandomSpawn {
+		p.PositionX = rand.Float64() * float64(config.General.WindowSizeX)
+		p.PositionY = rand.Float64() * float64(config.General.WindowSizeY)
+	} else {
+		p.PositionX = float64(config.General.SpawnX)
+		p.PositionY = float64(config.General.SpawnY)
+	}
+
+	// 2. Vitesse
+	p.SpeedX = rand.Float64()*10 - 5
+	p.SpeedY = rand.Float64()*10 - 5
+
+	// 3. Apparence
+	p.ScaleX, p.ScaleY = 1, 1
+	p.ColorRed, p.ColorGreen, p.ColorBlue = 1, 1, 1
+	p.Opacity = 1
+
+	// 4. Ajout à la liste
+	s.Content.PushFront(&p)
 }
