@@ -40,7 +40,9 @@ func (s *System) CreateParticle() {
 
 	// 3. Apparence
 	p.ScaleX, p.ScaleY = 1, 1
-	p.ColorRed, p.ColorGreen, p.ColorBlue = 1, 1, 1
+	p.ColorRed = rand.Float64()
+	p.ColorGreen = rand.Float64()
+	p.ColorBlue = rand.Float64()
 	p.Opacity = 1
 
 	// 4. Ajout à la liste
