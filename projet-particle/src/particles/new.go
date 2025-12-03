@@ -39,7 +39,8 @@ func (s *System) CreateParticle() {
 	p.SpeedY = rand.Float64()*10 - 5
 
 	// 3. Apparence
-	p.ScaleX, p.ScaleY = 1, 1
+	p.ScaleX = 4
+	p.ScaleY = 4
 	p.ColorRed = rand.Float64()
 	p.ColorGreen = rand.Float64()
 	p.ColorBlue = rand.Float64()
