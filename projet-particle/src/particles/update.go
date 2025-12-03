@@ -19,6 +19,7 @@ func (s *System) Update() {
 	}
 	for e := s.Content.Front(); e != nil; e = e.Next() {
 		p := e.Value.(*particle.Particle)
+		p.SpeedY += config.General.Gravity
 		p.PositionX = p.PositionX + p.SpeedX
 		p.PositionY = p.PositionY + p.SpeedY
 	}
