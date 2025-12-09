@@ -1,5 +1,7 @@
 package particle
 
+import "project-particles/config"
+
 /**
 *Fonction qui renvoie une particule définie par
 *
@@ -16,7 +18,7 @@ package particle
 
 func NewParticle(optionals ...float64) Particle {
 	//définie les valeurs par défaut des paramètres
-	params := []float64{0, 0, 0, 1, 1, 1, 1, 1, 1}
+	params := []float64{float64(config.General.WindowSizeX), float64(config.General.WindowSizeY), 0, 1, 1, 1, 1, 1, 1, 1, 1}
 	lo := len(optionals)
 	for i := 0; i < lo; i++ {
 		params[i] = optionals[i]
@@ -31,6 +33,8 @@ func NewParticle(optionals ...float64) Particle {
 		ColorGreen: params[6],
 		ColorBlue:  params[7],
 		Opacity:    params[8],
+		SpeedX:     params[9],
+		SpeedY:     params[10],
 	}
 
 	return p
