@@ -163,14 +163,14 @@ func TestSixArgs(t *testing.T) {
 		Rotation:   math.Pi,
 		ScaleX:     3,
 		ScaleY:     2,
-		ColorRed:   1.7,
+		ColorRed:   0.4,
 		ColorGreen: 1,
 		ColorBlue:  1,
 		Opacity:    1,
 		SpeedX:     1,
 		SpeedY:     1,
 	}
-	result := NewParticle(600, 500, math.Pi, 3, 2, 1.7)
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4)
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
 	}
@@ -186,14 +186,14 @@ func TestSevenArgs(t *testing.T) {
 		Rotation:   math.Pi,
 		ScaleX:     3,
 		ScaleY:     2,
-		ColorRed:   1.7,
-		ColorGreen: 2,
+		ColorRed:   0.4,
+		ColorGreen: 0.3,
 		ColorBlue:  1,
 		Opacity:    1,
 		SpeedX:     1,
 		SpeedY:     1,
 	}
-	result := NewParticle(600, 500, math.Pi, 3, 2, 1.7, 2)
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4, 0.3)
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
 	}
@@ -209,14 +209,14 @@ func TestEightArgs(t *testing.T) {
 		Rotation:   math.Pi,
 		ScaleX:     3,
 		ScaleY:     2,
-		ColorRed:   1.7,
-		ColorGreen: 2,
-		ColorBlue:  1.7,
-		Opacity:    0.7,
+		ColorRed:   0.4,
+		ColorGreen: 0.3,
+		ColorBlue:  0.8,
+		Opacity:    1,
 		SpeedX:     1,
 		SpeedY:     1,
 	}
-	result := NewParticle(600, 500, math.Pi, 3, 2, 1.7, 2, 1.7, 0.7)
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4, 0.3, 0.8)
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
 	}
@@ -232,14 +232,14 @@ func TestNineArgs(t *testing.T) {
 		Rotation:   math.Pi,
 		ScaleX:     3,
 		ScaleY:     2,
-		ColorRed:   1.7,
-		ColorGreen: 2,
-		ColorBlue:  1.7,
+		ColorRed:   0.4,
+		ColorGreen: 0.3,
+		ColorBlue:  0.8,
 		Opacity:    0.7,
-		SpeedX:     1.3,
+		SpeedX:     1,
 		SpeedY:     1,
 	}
-	result := NewParticle(600, 500, math.Pi, 3, 2, 1.7, 2, 1.7, 0.7, 1.3)
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4, 0.3, 0.8, 0.7)
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
 	}
@@ -255,14 +255,37 @@ func TestTenArgs(t *testing.T) {
 		Rotation:   math.Pi,
 		ScaleX:     3,
 		ScaleY:     2,
-		ColorRed:   1.7,
-		ColorGreen: 2,
-		ColorBlue:  1.7,
+		ColorRed:   0.4,
+		ColorGreen: 0.3,
+		ColorBlue:  0.8,
+		Opacity:    0.7,
+		SpeedX:     1.3,
+		SpeedY:     1,
+	}
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4, 0.3, 0.8, 0.7, 1.3)
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
+	}
+}
+
+// Test de la crÃ©ation d'une particule avec 10 arguments .
+func TestElevenArgs(t *testing.T) {
+	configurerTest()
+
+	expected := Particle{
+		PositionX:  600,
+		PositionY:  500,
+		Rotation:   math.Pi,
+		ScaleX:     3,
+		ScaleY:     2,
+		ColorRed:   0.4,
+		ColorGreen: 0.3,
+		ColorBlue:  0.8,
 		Opacity:    0.7,
 		SpeedX:     1.3,
 		SpeedY:     2,
 	}
-	result := NewParticle(600, 500, math.Pi, 3, 2, 1.7, 2, 1.7, 0.7, 1.3, 2)
+	result := NewParticle(600, 500, math.Pi, 3, 2, 0.4, 0.3, 0.8, 0.7, 1.3, 2)
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Attendu: %+v, Obtenu: %+v", expected, result)
 	}
