@@ -38,7 +38,7 @@ func TestNoArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 1 argument (Ã©crase Opacity).
+// Test de la création d'une particule avec 1 argument (Ã©crase Opacity).
 func TestOneArg(t *testing.T) {
 	configurerTest()
 
