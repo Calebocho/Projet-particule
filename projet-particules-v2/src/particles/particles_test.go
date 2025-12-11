@@ -104,3 +104,8 @@ func TestUpdate_SpawnRate(t *testing.T) {
 		t.Errorf("Tour 3 : ne devrait pas créer de nouvelle particule. Particules : %d", s.Content.Len())
 	}
 }
+
+// NB : Pour mon SpawnRemainder j'ai décidé de le voir comme une tirrelire
+// La variable SpawnRemainder accumule les décimales du SpawnRate à chaque tour
+// Tour 1 : 0 + 0.5 = 0.5  -> Pas assez pour "acheter" une particule (il faut 1.0)
+// Tour 2 : 0.5 + 0.5 = 1.0 -> Assez ! On crée la particule et on vide la tirelire
