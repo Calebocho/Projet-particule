@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-// Configure les paramÃ¨tres de base pour les tests (taille de l'Ã©cran)
+// Configure les paramètres de base pour les tests (taille de l'Ã©cran)
 func configurerTest() {
 	config.General.WindowSizeX = 800
 	config.General.WindowSizeY = 600
@@ -15,7 +15,7 @@ func configurerTest() {
 
 // --- Tests sur le nombre d'arguments ---
 
-// Test de la crÃ©ation d'une particule sans argument (valeurs par dÃ©faut).
+// Test de la création d'une particule sans argument (valeurs par dÃ©faut).
 func TestNoArgs(t *testing.T) {
 	configurerTest()
 	config.General.RandomSpawn = false
@@ -61,7 +61,7 @@ func TestOneArg(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 2 arguments (Ã©crase ColorBlue et Opacity).
+// Test de la création d'une particule avec 2 arguments (écrase ColorBlue et Opacity).
 func TestTwoArgs(t *testing.T) {
 	configurerTest()
 
@@ -84,7 +84,7 @@ func TestTwoArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 3 arguments.
+// Test de la création d'une particule avec 3 arguments.
 func TestThreeArgs(t *testing.T) {
 	configurerTest()
 
@@ -107,7 +107,7 @@ func TestThreeArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 4 arguments.
+// Test de la création d'une particule avec 4 arguments.
 func TestFourArgs(t *testing.T) {
 	configurerTest()
 
@@ -130,7 +130,7 @@ func TestFourArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 5 arguments.
+// Test de la création d'une particule avec 5 arguments.
 func TestFiveArgs(t *testing.T) {
 	configurerTest()
 
@@ -153,7 +153,7 @@ func TestFiveArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 6 arguments.
+// Test de la création d'une particule avec 6 arguments.
 func TestSixArgs(t *testing.T) {
 	configurerTest()
 
@@ -176,7 +176,7 @@ func TestSixArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 7 arguments.
+// Test de la création d'une particule avec 7 arguments.
 func TestSevenArgs(t *testing.T) {
 	configurerTest()
 
@@ -199,7 +199,7 @@ func TestSevenArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 8 arguments.
+// Test de la création d'une particule avec 8 arguments.
 func TestEightArgs(t *testing.T) {
 	configurerTest()
 
@@ -222,7 +222,7 @@ func TestEightArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 9 arguments .
+// Test de la création d'une particule avec 9 arguments .
 func TestNineArgs(t *testing.T) {
 	configurerTest()
 
@@ -245,7 +245,7 @@ func TestNineArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 10 arguments .
+// Test de la création d'une particule avec 10 arguments .
 func TestTenArgs(t *testing.T) {
 	configurerTest()
 
@@ -268,7 +268,7 @@ func TestTenArgs(t *testing.T) {
 	}
 }
 
-// Test de la crÃ©ation d'une particule avec 10 arguments .
+// Test de la création d'une particule avec 10 arguments .
 func TestElevenArgs(t *testing.T) {
 	configurerTest()
 
