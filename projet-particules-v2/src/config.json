@@ -9,5 +9,9 @@
 	"SpawnX": 400,
 	"SpawnY": 400,
 	"SpawnRate": 1,
-    "Gravity" : 0.5 
+    "Gravity" : 0.5 ,
+	"RandColor" : true ,
+	"Red": 1.0,
+  	"Green": 1.0,
+  	"Blue": 1.0
 }

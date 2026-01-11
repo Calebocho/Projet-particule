@@ -24,7 +24,6 @@ func NewSystem() System {
 func (s *System) CreateParticle() {
 	p := particle.NewParticle(10, 10)
 
-	// 1. Position
 	if config.General.RandomSpawn {
 		p.PositionX = rand.Float64() * float64(config.General.WindowSizeX)
 		p.PositionY = rand.Float64() * float64(config.General.WindowSizeY)
@@ -33,16 +32,22 @@ func (s *System) CreateParticle() {
 		p.PositionY = float64(config.General.SpawnY)
 	}
 
-	// 2. Vitesse
 	p.SpeedX = rand.Float64()*10 - 5
 	p.SpeedY = rand.Float64()*10 - 5
 
-	// 3. Apparence
-	p.ScaleX = 4
-	p.ScaleY = 4
-	p.ColorRed = rand.Float64()
-	p.ColorGreen = rand.Float64()
-	p.ColorBlue = rand.Float64()
+	if config.General.RandColor {
+		p.ColorRed = rand.Float64()
+		p.ColorBlue = rand.Float64()
+		p.ColorGreen = rand.Float64()
+	} else {
+		p.ColorRed = config.General.Red
+		p.ColorBlue = config.General.Blue
+		p.ColorGreen = config.General.Green
+
+	}
+	p.ScaleX = 1
+	p.ScaleY = 1
+
 	p.Opacity = 1
 
 	// 4. Ajout à la liste

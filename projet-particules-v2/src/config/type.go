@@ -19,6 +19,8 @@ type Config struct {
 	Dx                       float64 //JFB largeur du sprite
 	Dy                       float64 //JFB hauteur du sprite
 	Gravity                  float64
+	RandColor                bool
+	Green, Red, Blue         float64
 }
 
 var General Config
