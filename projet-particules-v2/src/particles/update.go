@@ -17,11 +17,24 @@ func (s *System) Update() {
 		s.CreateParticle()
 		s.SpawnRemainder -= 1
 	}
-	for e := s.Content.Front(); e != nil; e = e.Next() {
+	e := s.Content.Front()
+	for e != nil {
+		suivant := e.Next()
 		p := e.Value.(*particle.Particle)
 		p.SpeedY += config.General.Gravity
 		p.PositionX = p.PositionX + p.SpeedX
 		p.PositionY = p.PositionY + p.SpeedY
 
+		// Extension 5.2
+
+		margin := 10.0
+		maxX := float64(config.General.WindowSizeX) + margin
+		maxY := float64(config.General.WindowSizeY) + margin
+
+		if p.PositionX < -margin || p.PositionX > maxX || p.PositionY < -margin || p.PositionY > maxY {
+			s.Content.Remove(e)
+
+		}
+		e = suivant
 	}
 }
