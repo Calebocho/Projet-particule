@@ -50,5 +50,14 @@ func (s *System) CreateParticle() {
 
 	p.Opacity = 1
 
+	//extension 5.3
+	if config.General.DureeDeVie == true {
+		p.TempsDureeDeVie = config.General.TempsDureeDeVie + float64(rand.Intn(50))
+		// J'ai ajouté une fonction aléatoire pour que les particules disparaissent à des moments différents et non en même temps.
+	} else {
+		p.TempsDureeDeVie = 9999
+		// Si nous  n'avons pas de durée de vie, cela signifie que les particules ne disparaîtront pas. et 9999 comme l'infinie
+	}
+
 	s.Content.PushFront(&p)
 }

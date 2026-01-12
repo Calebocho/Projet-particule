@@ -19,6 +19,10 @@ func (g *game) Draw(screen *ebiten.Image) {
 	for e := g.system.Content.Front(); e != nil; e = e.Next() {
 		p, ok := e.Value.(*particle.Particle)
 		if ok {
+			// extension 5.3
+			if config.General.DureeDeVie == true && p.TempsDureeDeVie <= 0 {
+				continue // Si notre duree de vie atteint zéro, alors nous ne dessinons plus la particulle.
+			}
 			options := ebiten.DrawImageOptions{}
 			options.GeoM.Rotate(p.Rotation)
 			options.GeoM.Scale(p.ScaleX, p.ScaleY)

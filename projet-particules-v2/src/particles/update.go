@@ -21,10 +21,15 @@ func (s *System) Update() {
 	for e != nil {
 		suivant := e.Next()
 		p := e.Value.(*particle.Particle)
-		p.SpeedY += config.General.Gravity
+		//extension 5.1
+		p.SpeedY = p.SpeedY + config.General.Gravity
 		p.PositionX = p.PositionX + p.SpeedX
 		p.PositionY = p.PositionY + p.SpeedY
+		//extension 5.3
+		if config.General.DureeDeVie == true {
+			p.TempsDureeDeVie = p.TempsDureeDeVie - 1
 
+		}
 		p.Opacity -= config.General.OpacitySpeed
 
 		if p.Opacity <= 0 {
