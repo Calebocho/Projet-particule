@@ -28,7 +28,24 @@ func (g *game) Draw(screen *ebiten.Image) {
 		}
 	}
 
-	if config.General.Debug {
+	if config.General.Debug == true {
+		if config.General.DynamiqueDuSysDePart == true {
+			parametres := fmt.Sprintf(
+				"Position de spawn: (%d, %d)\n"+
+					"Temps de duree de vie: %.1f\n"+
+					"Spawn rate: %.1f\n"+
+					"Gravity: %.1f\n",
+				config.General.SpawnX,
+				config.General.SpawnY,
+				config.General.TempsDureeDeVie,
+				config.General.SpawnRate,
+				config.General.Gravity,
+			)
+			ebitenutil.DebugPrintAt(screen, parametres, 800, 0)
+		}
+	}
+
+	if config.General.Debug == true {
 		ebitenutil.DebugPrint(screen, fmt.Sprint(ebiten.CurrentTPS()))
 	}
 

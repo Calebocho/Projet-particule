@@ -13,7 +13,7 @@ import (
 func (g *game) Update() error {
 
 	speed := int(config.General.MoveSpeedGenerator)
-
+	// extension 5.6
 	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
 		config.General.SpawnX -= speed
 	}
@@ -25,6 +25,30 @@ func (g *game) Update() error {
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
 		config.General.SpawnY += speed
+	}
+	// extension 5.7
+	if config.General.DynamiqueDuSysDePart == true {
+		// ici je peux augmenter ou diminuer la duree de vie
+		if ebiten.IsKeyPressed(ebiten.KeyEqual) == true {
+			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie + 10
+		}
+		if ebiten.IsKeyPressed(ebiten.KeyMinus) == true {
+			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 10
+		}
+		// ici je prend la position de spawn avec un cursor
+		X, Y := ebiten.CursorPosition()
+		if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+			config.General.SpawnX = X
+			config.General.SpawnY = Y
+		}
+		//ici je peux augmenter ou diminuer la gravite
+		if ebiten.IsKeyPressed(ebiten.KeyW) == true {
+			config.General.Gravity = config.General.Gravity + 0.1
+		}
+		if ebiten.IsKeyPressed(ebiten.KeyS) == true {
+			config.General.Gravity = config.General.Gravity - 0.1
+		}
+
 	}
 
 	g.system.Update()

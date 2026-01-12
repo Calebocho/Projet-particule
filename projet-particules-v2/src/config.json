@@ -5,7 +5,7 @@
 	"ParticleImage": "assets/particle.png",
 	"Debug": true,
 	"InitNumParticles": 10,
-	"RandomSpawn": true,
+	"RandomSpawn": false,
 	"SpawnX": 400,
 	"SpawnY": 400,
 	"SpawnRate": 1,
@@ -15,5 +15,11 @@
 	"MoveSpeedGenerator": 10,
 	"Red": 1.0,
   	"Green": 1.0,
-  	"Blue": 1.0
+  	"Blue": 1.0,
+	"DureeDeVie" : true,
+	"TempsDureeDeVie" : 100,
+	"Generateur": "cercle",
+	"Generateurtaille": 60,
+	"VitesseInit": 2,
+	"DynamiqueDuSysDePart" : true
 }

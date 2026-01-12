@@ -23,6 +23,11 @@ type Config struct {
 	RandColor                bool
 	OpacitySpeed             float64
 	Green, Red, Blue         float64
+	DureeDeVie               bool
+	TempsDureeDeVie          float64
+	Generateur               string
+	Generateurtaille         float64
+	DynamiqueDuSysDePart     bool
 }
 
 var General Config
