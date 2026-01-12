@@ -26,7 +26,7 @@ func (s *System) CreateParticle() {
 	p := particle.NewParticle(10, 10)
 	//extension 5.5
 	if config.General.Generateur == "cercle" {
-		angle := rand.Float64() * 2 * 3.14159
+		angle := (rand.Float64() - 0.5) * 2 * math.Pi
 		// une formule de math de diff de coordonnes sur oY et oX   pour un cercle
 		p.PositionX = float64(config.General.SpawnX) + config.General.Generateurtaille*math.Cos(angle)
 		p.PositionY = float64(config.General.SpawnY) + config.General.Generateurtaille*math.Sin(angle)
