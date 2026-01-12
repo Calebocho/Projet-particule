@@ -25,7 +25,13 @@ func (s *System) Update() {
 		p.PositionX = p.PositionX + p.SpeedX
 		p.PositionY = p.PositionY + p.SpeedY
 
-		// Extension 5.2
+		p.Opacity -= config.General.OpacitySpeed
+
+		if p.Opacity <= 0 {
+			s.Content.Remove(e)
+			e = suivant
+			continue
+		}
 
 		margin := 10.0
 		maxX := float64(config.General.WindowSizeX) + margin

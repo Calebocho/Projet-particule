@@ -11,6 +11,8 @@
 	"SpawnRate": 1,
     "Gravity" : 0.5 ,
 	"RandColor" : true ,
+	"OpacitySpeed": 0.03,
+	"MoveSpeedGenerator": 10,
 	"Red": 1.0,
   	"Green": 1.0,
   	"Blue": 1.0

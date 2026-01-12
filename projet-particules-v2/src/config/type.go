@@ -16,10 +16,12 @@ type Config struct {
 	RandomSpawn              bool
 	SpawnX, SpawnY           int
 	SpawnRate                float64
+	MoveSpeedGenerator       float64
 	Dx                       float64 //JFB largeur du sprite
 	Dy                       float64 //JFB hauteur du sprite
 	Gravity                  float64
 	RandColor                bool
+	OpacitySpeed             float64
 	Green, Red, Blue         float64
 }
 

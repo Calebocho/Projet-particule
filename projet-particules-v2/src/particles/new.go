@@ -50,6 +50,5 @@ func (s *System) CreateParticle() {
 
 	p.Opacity = 1
 
-	// 4. Ajout à la liste
 	s.Content.PushFront(&p)
 }
