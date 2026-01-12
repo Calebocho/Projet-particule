@@ -47,12 +47,14 @@ func (s *System) CreateParticle() {
 		p.SpeedX = rand.Float64()*10 - 5
 		p.SpeedY = rand.Float64()*10 - 5
 	}
-
+	// Extension 5.4
 	if config.General.RandColor {
+		//Ici je mets de couleurs random
 		p.ColorRed = rand.Float64()
 		p.ColorBlue = rand.Float64()
 		p.ColorGreen = rand.Float64()
 	} else {
+		//ici je respecte les couleurs fixe de la config
 		p.ColorRed = config.General.Red
 		p.ColorBlue = config.General.Blue
 		p.ColorGreen = config.General.Green

@@ -12,30 +12,38 @@ import (
 // pour les deux dernières extensions.
 func (g *game) Update() error {
 
+	// extension 5.6
+	// ici je convertis la vitesse en entier pour pouvoir l'additionner aux coordonnées
 	speed := int(config.General.MoveSpeedGenerator)
-	// extension 5.6 Caleb
+
 	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
+		// ici je déplace le générateur vers la gauche
 		config.General.SpawnX -= speed
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
+		// ici je déplace le générateur vers la droite
 		config.General.SpawnX += speed
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowUp) {
+		// ici je déplace le générateur vers le haut
 		config.General.SpawnY -= speed
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
+		// ici je déplace le générateur vers le bas
 		config.General.SpawnY += speed
 	}
-	// extension 5.7 Roman
+	// extension 5.7
 	if config.General.DynamiqueDuSysDePart == true {
 		// ici je peux augmenter ou diminuer la duree de vie
 		if ebiten.IsKeyPressed(ebiten.KeyEqual) == true {
 			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie + 5
 		}
+		if ebiten.IsKeyPressed(ebiten.KeyMinus) && config.General.TempsDureeDeVie > 0 {
+			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 5
+		}
+		// Je m'assure qu'elle ne reste jamais en dessous de 0
 		if config.General.TempsDureeDeVie < 0 {
 			config.General.TempsDureeDeVie = 0
-		} else if ebiten.IsKeyPressed(ebiten.KeyMinus) == true {
-			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 5
 		}
 		// ici je prend la position de spawn avec un cursor
 		X, Y := ebiten.CursorPosition()

@@ -30,18 +30,24 @@ func (s *System) Update() {
 			p.TempsDureeDeVie = p.TempsDureeDeVie - 1
 
 		}
+		//Extension 5.4
+		//Ici je rends la particule un peu plus transparente
 		p.Opacity -= config.General.OpacitySpeed
 
-		if p.Opacity <= 0 {
+		//Extension 5.8
+		// Ici je supprime la particule dans le cas ou elle est invisible ou si le temps est dépassé
+		if p.Opacity <= 0 || (config.General.DureeDeVie && p.TempsDureeDeVie <= 0) {
 			s.Content.Remove(e)
 			e = suivant
 			continue
 		}
 
+		//Extension 5.2
 		margin := 10.0
 		maxX := float64(config.General.WindowSizeX) + margin
 		maxY := float64(config.General.WindowSizeY) + margin
 
+		// ici je vérifie si la particule est sortie du cadre pour la supprimer
 		if p.PositionX < -margin || p.PositionX > maxX || p.PositionY < -margin || p.PositionY > maxY {
 			s.Content.Remove(e)
 
