@@ -45,7 +45,7 @@ func (g *game) Draw(screen *ebiten.Image) {
 				config.General.SpawnRate,
 				config.General.Gravity,
 			)
-			ebitenutil.DebugPrintAt(screen, parametres, 800, 0)
+			ebitenutil.DebugPrintAt(screen, parametres, 600, 0)
 		}
 	}
 

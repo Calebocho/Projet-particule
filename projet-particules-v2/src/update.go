@@ -30,10 +30,10 @@ func (g *game) Update() error {
 	if config.General.DynamiqueDuSysDePart == true {
 		// ici je peux augmenter ou diminuer la duree de vie
 		if ebiten.IsKeyPressed(ebiten.KeyEqual) == true {
-			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie + 10
+			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie + 5
 		}
 		if ebiten.IsKeyPressed(ebiten.KeyMinus) == true {
-			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 10
+			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 5
 		}
 		// ici je prend la position de spawn avec un cursor
 		X, Y := ebiten.CursorPosition()

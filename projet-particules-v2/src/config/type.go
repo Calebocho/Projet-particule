@@ -27,6 +27,7 @@ type Config struct {
 	TempsDureeDeVie          float64
 	Generateur               string
 	Generateurtaille         float64
+	VitesseInit              float64
 	DynamiqueDuSysDePart     bool
 }
 

@@ -2,6 +2,7 @@ package particles
 
 import (
 	"container/list"
+	"math"
 	"math/rand"
 	"project-particles/config"
 	"project-particles/particle"
@@ -23,17 +24,28 @@ func NewSystem() System {
 }
 func (s *System) CreateParticle() {
 	p := particle.NewParticle(10, 10)
-
-	if config.General.RandomSpawn {
-		p.PositionX = rand.Float64() * float64(config.General.WindowSizeX)
-		p.PositionY = rand.Float64() * float64(config.General.WindowSizeY)
+	//extension 5.5
+	if config.General.Generateur == "cercle" {
+		angle := rand.Float64() * 2 * 3.14159
+		// une formule de math de diff de coordonnes sur oY et oX   pour un cercle
+		p.PositionX = float64(config.General.SpawnX) + config.General.Generateurtaille*math.Cos(angle)
+		p.PositionY = float64(config.General.SpawnY) + config.General.Generateurtaille*math.Sin(angle)
+		// des vitesses initiales des particules en fonction de la forme du générateur
+		p.SpeedX = config.General.VitesseInit * math.Cos(angle)
+		p.SpeedY = config.General.VitesseInit * math.Sin(angle)
+		// une position
 	} else {
-		p.PositionX = float64(config.General.SpawnX)
-		p.PositionY = float64(config.General.SpawnY)
-	}
+		if config.General.RandomSpawn {
+			p.PositionX = rand.Float64() * float64(config.General.WindowSizeX)
+			p.PositionY = rand.Float64() * float64(config.General.WindowSizeY)
+		} else {
+			p.PositionX = float64(config.General.SpawnX)
+			p.PositionY = float64(config.General.SpawnY)
+		}
 
-	p.SpeedX = rand.Float64()*10 - 5
-	p.SpeedY = rand.Float64()*10 - 5
+		p.SpeedX = rand.Float64()*10 - 5
+		p.SpeedY = rand.Float64()*10 - 5
+	}
 
 	if config.General.RandColor {
 		p.ColorRed = rand.Float64()
