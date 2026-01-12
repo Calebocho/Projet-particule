@@ -13,7 +13,7 @@ import (
 func (g *game) Update() error {
 
 	speed := int(config.General.MoveSpeedGenerator)
-	// extension 5.6
+	// extension 5.6 Caleb
 	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
 		config.General.SpawnX -= speed
 	}
@@ -26,13 +26,15 @@ func (g *game) Update() error {
 	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
 		config.General.SpawnY += speed
 	}
-	// extension 5.7
+	// extension 5.7 Roman
 	if config.General.DynamiqueDuSysDePart == true {
 		// ici je peux augmenter ou diminuer la duree de vie
 		if ebiten.IsKeyPressed(ebiten.KeyEqual) == true {
 			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie + 5
 		}
-		if ebiten.IsKeyPressed(ebiten.KeyMinus) == true {
+		if config.General.TempsDureeDeVie < 0 {
+			config.General.TempsDureeDeVie = 0
+		} else if ebiten.IsKeyPressed(ebiten.KeyMinus) == true {
 			config.General.TempsDureeDeVie = config.General.TempsDureeDeVie - 5
 		}
 		// ici je prend la position de spawn avec un cursor
