@@ -33,8 +33,9 @@ func (s *System) CreateParticle() {
 		// des vitesses initiales des particules en fonction de la forme du générateur
 		p.SpeedX = config.General.VitesseInit * math.Cos(angle)
 		p.SpeedY = config.General.VitesseInit * math.Sin(angle)
-		// une position
+
 	} else {
+		// une position
 		if config.General.RandomSpawn {
 			p.PositionX = rand.Float64() * float64(config.General.WindowSizeX)
 			p.PositionY = rand.Float64() * float64(config.General.WindowSizeY)
