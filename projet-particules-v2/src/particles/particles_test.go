@@ -105,7 +105,77 @@ func TestUpdate_SpawnRate(t *testing.T) {
 	}
 }
 
-// NB : Pour mon SpawnRemainder j'ai décidé de le voir comme une tirrelire
-// La variable SpawnRemainder accumule les décimales du SpawnRate à chaque tour
-// Tour 1 : 0 + 0.5 = 0.5  -> Pas assez pour "acheter" une particule (il faut 1.0)
-// Tour 2 : 0.5 + 0.5 = 1.0 -> Assez ! On crée la particule et on vide la tirelire
+// TEST 5 : Extension Gravité
+/* Vérifie que la gravité augmente bien la vitesse Y de la particule avec une Gravité forte pas de nouvelles particules et on empêche la mort par opacité
+on réxupère une particule on sauvegarde sa vitesse initiale avec VitesseInit et on fait un tour de boucle la vitesse attendue est VitesseInit + Gravité
+*/
+func TestGravity(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 1
+	config.General.Gravity = 10.0
+	config.General.SpawnRate = 0
+	config.General.OpacitySpeed = 0
+
+	s := NewSystem()
+	p := s.Content.Front().Value.(*particle.Particle)
+
+	vitesseInit := p.SpeedY
+
+	s.Update()
+
+	vitesseAttendue := vitesseInit + config.General.Gravity
+
+	if p.SpeedY != vitesseAttendue {
+		t.Errorf("La gravité ne s'applique pas. VitesseY avant: %f, après: %f (Attendu: %f)", vitesseInit, p.SpeedY, vitesseAttendue)
+	}
+}
+
+// TEST 6 : Extension Sortie d'Écran
+/* Vérifie qu'une particule est supprimée si elle sort de la fenêtre en plaçant hors de l'écran une particule et en vérifiant si elle est bien suprimée de la liste après un update pour celà on définie une petite fenêtre et on tp la particule très loin avant l'update elle est présente et après elle disparait
+
+ */
+func TestScreen(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 1
+	config.General.SpawnRate = 0
+
+	config.General.WindowSizeX = 100
+	config.General.WindowSizeY = 100
+
+	s := NewSystem()
+	p := s.Content.Front().Value.(*particle.Particle)
+
+	p.PositionX = -500
+
+	if s.Content.Len() != 1 {
+		t.Error("La particule devrait être là avant l'update")
+	}
+	s.Update()
+
+	if s.Content.Len() != 0 {
+		t.Errorf("La particule hors écran n'a pas été supprimée. Reste : %d", s.Content.Len())
+	}
+}
+
+// TEST 7 : Extension Opacité et Durée de Vie
+/* Vérifie que l'opacité baisse et que la particule meurt à 0 ( quand elle est invisible) On configure une baisse d'opacité drastique pour tuer la particule en 1 coup
+ */
+func TestOpacityDeath(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 1
+	config.General.SpawnRate = 0
+
+	config.General.OpacitySpeed = 1.1
+
+	s := NewSystem()
+
+	p := s.Content.Front().Value.(*particle.Particle)
+	if p.Opacity != 1 {
+		t.Error("L'opacité initiale devrait être à 1")
+	}
+	s.Update()
+
+	if s.Content.Len() != 0 {
+		t.Errorf("La particule invisible n'a pas été supprimée. Reste : %d", s.Content.Len())
+	}
+}
