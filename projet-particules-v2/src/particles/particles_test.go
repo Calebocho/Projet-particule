@@ -1,6 +1,7 @@
 package particles
 
 import (
+	"math"
 	"project-particles/config"
 	"project-particles/particle"
 	"testing"
@@ -177,5 +178,84 @@ func TestOpacityDeath(t *testing.T) {
 
 	if s.Content.Len() != 0 {
 		t.Errorf("La particule invisible n'a pas été supprimée. Reste : %d", s.Content.Len())
+	}
+}
+
+// TEST 8 : Extension Générateur Mobile
+/* Vérifie que changer SpawnX influence bien la position des futures particules en placant le générateur à 100, 100 puis on  vérifie la particule 1
+et on bouge le générateur et on fini par  vérifier la particule 2 (qui est maintenant en tête de liste grace au PushFront)
+*/
+func TestGeneratorMove(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 0
+	config.General.SpawnRate = 1.0     // On veut créer une particule
+	config.General.RandomSpawn = false // Position fixe
+
+	config.General.SpawnX = 100
+	config.General.SpawnY = 100
+
+	s := NewSystem()
+	s.Update()
+
+	p1 := s.Content.Front().Value.(*particle.Particle)
+	if p1.PositionX != 100 {
+		t.Errorf("Particule 1 au mauvais endroit. Attendu 100, reçu %f", p1.PositionX)
+	}
+
+	config.General.SpawnX = 500
+	s.Update()
+	p2 := s.Content.Front().Value.(*particle.Particle)
+
+	if p2.PositionX != 500 {
+		t.Errorf("Le déplacement du générateur n'a pas fonctionné. Attendu 500, reçu %f", p2.PositionX)
+	}
+}
+
+// TEST 9 : Extension Durée de Vie (5.3)
+// On Vérifie que le compteur de vie diminue bien à chaque update on commence par activé la durée de vie on donne 100 tours de vie on désactive l'aléatoire(pour avoir exactement 100)
+
+func TestLifetime(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 1
+	config.General.SpawnRate = 0
+
+	config.General.DureeDeVie = true
+	config.General.TempsDureeDeVie = 100
+
+	s := NewSystem()
+	p := s.Content.Front().Value.(*particle.Particle)
+
+	vieInitiale := p.TempsDureeDeVie
+
+	s.Update()
+
+	if p.TempsDureeDeVie >= vieInitiale {
+		t.Errorf("La durée de vie ne diminue pas !!! Avant: %f, Après: %f", vieInitiale, p.TempsDureeDeVie)
+	}
+}
+
+// TEST 10 : Extension Générateur Cercle (5.5)
+// Vérifie que les particules apparaissent à la bonne distance du centre (Rayon) on utilise le théorème de Pythagore pour calculer la distance entre la particule et le centre
+func TestGeneratorCircle(t *testing.T) {
+	resetConfig()
+	config.General.InitNumParticles = 1
+	config.General.SpawnRate = 0
+
+	// Configuration du cercle
+	config.General.Generateur = "cercle"
+	config.General.SpawnX = 400
+	config.General.SpawnY = 400
+	config.General.Generateurtaille = 50 // Rayon du cercle
+
+	s := NewSystem()
+	p := s.Content.Front().Value.(*particle.Particle)
+
+	// Distance² = (x2-x1)² + (y2-y1)²
+	distX := p.PositionX - float64(config.General.SpawnX)
+	distY := p.PositionY - float64(config.General.SpawnY)
+	distance := math.Sqrt(distX*distX + distY*distY)
+
+	if math.Abs(distance-config.General.Generateurtaille) > 0.01 {
+		t.Errorf("La particule n'est pas sur le cercle. Distance trouvée: %f, Rayon attendu: %f", distance, config.General.Generateurtaille)
 	}
 }
