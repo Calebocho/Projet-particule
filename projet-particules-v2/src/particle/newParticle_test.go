@@ -268,7 +268,7 @@ func TestTenArgs(t *testing.T) {
 	}
 }
 
-// Test de la création d'une particule avec 10 arguments .
+// Test de la création d'une particule avec 11 arguments .
 func TestElevenArgs(t *testing.T) {
 	configurerTest()
 

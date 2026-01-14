@@ -106,7 +106,7 @@ func TestUpdate_SpawnRate(t *testing.T) {
 	}
 }
 
-// TEST 5 : Extension Gravité
+// TEST: Extension Gravité
 /* Vérifie que la gravité augmente bien la vitesse Y de la particule avec une Gravité forte pas de nouvelles particules et on empêche la mort par opacité
 on réxupère une particule on sauvegarde sa vitesse initiale avec VitesseInit et on fait un tour de boucle la vitesse attendue est VitesseInit + Gravité
 */
@@ -131,7 +131,7 @@ func TestGravity(t *testing.T) {
 	}
 }
 
-// TEST 6 : Extension Sortie d'Écran
+// TEST: Extension Sortie d'Écran
 /* Vérifie qu'une particule est supprimée si elle sort de la fenêtre en plaçant hors de l'écran une particule et en vérifiant si elle est bien suprimée de la liste après un update pour celà on définie une petite fenêtre et on tp la particule très loin avant l'update elle est présente et après elle disparait
 
  */
@@ -158,7 +158,7 @@ func TestScreen(t *testing.T) {
 	}
 }
 
-// TEST 7 : Extension Opacité et Durée de Vie
+// TEST : Extension Opacité et Durée de Vie
 /* Vérifie que l'opacité baisse et que la particule meurt à 0 ( quand elle est invisible) On configure une baisse d'opacité drastique pour tuer la particule en 1 coup
  */
 func TestOpacityDeath(t *testing.T) {
@@ -181,7 +181,7 @@ func TestOpacityDeath(t *testing.T) {
 	}
 }
 
-// TEST 8 : Extension Générateur Mobile
+// TEST Extension Générateur Mobile
 /* Vérifie que changer SpawnX influence bien la position des futures particules en placant le générateur à 100, 100 puis on  vérifie la particule 1
 et on bouge le générateur et on fini par  vérifier la particule 2 (qui est maintenant en tête de liste grace au PushFront)
 */
@@ -211,7 +211,7 @@ func TestGeneratorMove(t *testing.T) {
 	}
 }
 
-// TEST 9 : Extension Durée de Vie (5.3)
+// TEST Extension Durée de Vie (5.3)
 // On Vérifie que le compteur de vie diminue bien à chaque update on commence par activé la durée de vie on donne 100 tours de vie on désactive l'aléatoire(pour avoir exactement 100)
 
 func TestLifetime(t *testing.T) {
@@ -234,7 +234,7 @@ func TestLifetime(t *testing.T) {
 	}
 }
 
-// TEST 10 : Extension Générateur Cercle (5.5)
+// TEST Extension Générateur Cercle (5.5)
 // Vérifie que les particules apparaissent à la bonne distance du centre (Rayon) on utilise le théorème de Pythagore pour calculer la distance entre la particule et le centre
 func TestGeneratorCircle(t *testing.T) {
 	resetConfig()
