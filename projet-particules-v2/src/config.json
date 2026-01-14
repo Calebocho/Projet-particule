@@ -9,6 +9,7 @@
 	"SpawnX": 400,
 	"SpawnY": 400,
 	"SpawnRate": 10,
+	"GravityActivate" : true,
     "Gravity" : 0.5 ,
 	"RandColor" : true ,
 	"OpacitySpeed": 0.03,

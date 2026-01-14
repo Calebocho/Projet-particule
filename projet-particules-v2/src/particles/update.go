@@ -22,7 +22,9 @@ func (s *System) Update() {
 		suivant := e.Next()
 		p := e.Value.(*particle.Particle)
 		//extension 5.1
-		p.SpeedY = p.SpeedY + config.General.Gravity
+		if config.General.GravityActivate == true {
+			p.SpeedY = p.SpeedY + config.General.Gravity
+		}
 		p.PositionX = p.PositionX + p.SpeedX
 		p.PositionY = p.PositionY + p.SpeedY
 		//extension 5.3

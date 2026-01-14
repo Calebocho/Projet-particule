@@ -19,6 +19,7 @@ type Config struct {
 	MoveSpeedGenerator       float64
 	Dx                       float64 //JFB largeur du sprite
 	Dy                       float64 //JFB hauteur du sprite
+	GravityActivate          bool
 	Gravity                  float64
 	RandColor                bool
 	OpacitySpeed             float64
