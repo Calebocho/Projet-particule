@@ -8,7 +8,7 @@
 	"RandomSpawn": false,
 	"SpawnX": 400,
 	"SpawnY": 400,
-	"SpawnRate": 1,
+	"SpawnRate": 10,
     "Gravity" : 0.5 ,
 	"RandColor" : true ,
 	"OpacitySpeed": 0.03,

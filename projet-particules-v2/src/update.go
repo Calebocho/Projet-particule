@@ -58,6 +58,13 @@ func (g *game) Update() error {
 		if ebiten.IsKeyPressed(ebiten.KeyS) == true {
 			config.General.Gravity = config.General.Gravity - 0.1
 		}
+		//ici je peux augmenter ou diminuer le rayon de cercle
+		if ebiten.IsKeyPressed(ebiten.KeyA) == true {
+			config.General.Generateurtaille = config.General.Generateurtaille + 5
+		}
+		if ebiten.IsKeyPressed(ebiten.KeyZ) == true {
+			config.General.Generateurtaille = config.General.Generateurtaille - 5
+		}
 
 	}
 
